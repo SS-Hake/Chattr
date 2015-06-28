@@ -1,0 +1,17 @@
+{
+  "name": "Chattr",
+  "version": "0.0.1",
+  "description": "A social Media App",
+  "main": "app.js",
+  "dependencies": {
+    "express": "~4.13.0",
+    "body-parser": "~1.13.1",
+    "mongoose": "~4.0.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sam",
+  "license": "BSD-2-Clause"
+}
