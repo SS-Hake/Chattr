@@ -3,6 +3,8 @@ var express = require('express'),
 	Post = require('./models/post'),
 	app = express();
 
+app.use(require('./auth'))
+
 app.use(bodyParser.json())
 app.use('/api/posts', require('./controllers/api/posts.js'))
 //Mount authentication controllers.

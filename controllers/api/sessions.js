@@ -35,6 +35,12 @@ var User   = require('../../models/user')
 // Either way will be fine, but the full URL should be '/api/sessions'
 router.post('/', function (req, res, next) {
   var username = req.body.username
+  console.log(username)
+  User.findOne({ username: username }, function(err, doc) {
+  	console.log("This")
+  	console.log(doc); 
+  });
+  //console.log(User.findOne({username: username}))
   User.findOne({username: username})
   .select('password')
   .exec(function (err, user) {
@@ -42,7 +48,7 @@ router.post('/', function (req, res, next) {
     if (!user) { return res.sendStatus(401) }
     bcrypt.compare(req.body.password, user.password, function (err, valid) {
       if (err) { return next(err) }
-      if (!valid) { return res.sendStatus(401) }
+      if (!valid) { return console.log("error!")/*res.sendStatus(401)*/ }
       var token = jwt.encode({username: username}, config.secret)
       res.send(token)
     })
