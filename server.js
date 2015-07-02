@@ -16,7 +16,8 @@ app.get('/', function(req, res) {
 	res.sendfile('layouts/posts.html');
 })
 
-app.listen(3000, function() {
+var server = app.listen(3000, function() {
 	console.log('[+] Chattr listening on port 3000...')
 })
+require('./websockets').connect(server)
 
