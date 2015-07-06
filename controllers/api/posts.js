@@ -1,6 +1,7 @@
 var Post = require('../../models/post');
 var router = require('express').Router();
 var websockets = require('../../websockets');
+var pubsub = require('../../pubsub')
 
 router.get('/', function(req, res, next) {
 	console.log("[+] Getting data...");
@@ -21,8 +22,13 @@ router.post('/', function(req, res, next) {
 		if(err) {return next(err)}
 		//Broadcast the new message to all clients logged in.
 		websockets.broadcast('new_post', post)
-		res.json(201, post)
+		pubsub.publish('new_post', post)
+		res.status(201).json(post)
 	})
+})
+
+pubsub.subscribe('new_post', function(post) {
+	websockets.broadcast('new_post', post)
 })
 
 module.exports = router

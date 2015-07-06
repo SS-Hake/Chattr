@@ -17,9 +17,12 @@
     "jwt-simple": "~0.3.0",
     "lodash": "~3.9.3",
     "bcrypt": "~0.8.3",
-    "ws": "~0.7.2"
+    "ws": "~0.7.2",
+    "redis": "~0.12.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "protractor": "~2.1.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
