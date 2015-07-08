@@ -1,4 +1,7 @@
 var db = require('../../db')
+var chai = require('chai')
+chai.use(require('chai-as-promised'))
+var expect = chai.expect
 
 describe('making a port', function() {
 	it('logs in and creates a new post', function() {
@@ -11,14 +14,18 @@ describe('making a port', function() {
 		element(by.model('password')).sendKeys('pass')
 		element(by.css('form .btn')).click()
 		//submit a post on the posts page
-		var post = 'New selenium post!'
+		var post = 'New selenium post!' + Math.random()
 		browser.get('http://localhost:3001')
 		element(by.model('postBody')).sendKeys(post)
 		element(by.css('form .btn')).click()
 
+		expect(element.all(by.css('ul.list-group li')).first().getTExt()).to.eventually.contain(post)
+
+		}
 		//user should now see their post as the first post on the page.
 	})
-	afterEach(function () {
+	//Clean the database after test if required.
+	/*afterEach(function () {
 		db.connection.db.dropDatabase()
-	})
+	})*/
 })

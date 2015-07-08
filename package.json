@@ -22,10 +22,13 @@
   },
   "devDependencies": {
     "protractor": "~2.1.0",
-    "mocha": "~2.2.5"
+    "mocha": "~2.2.5",
+    "chai": "~3.0.0",
+    "chai-as-promised": "~5.1.0",
+    "supertest": "~1.0.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "Sam",
   "license": "BSD-2-Clause"
