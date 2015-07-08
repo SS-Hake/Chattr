@@ -1,10 +1,10 @@
 var express = require('express'),
 	bodyParser = require('body-parser'),
+	websockets = require('./websockets'),
 	Post = require('./models/post'),
 	app = express();
 
 app.use(require('./auth'))
-
 app.use(bodyParser.json())
 app.use('/api/posts', require('./controllers/api/posts.js'))
 //Mount authentication controllers.
@@ -16,8 +16,9 @@ app.get('/', function(req, res) {
 	res.sendfile('layouts/posts.html');
 })
 
-var server = app.listen(3000, function() {
-	console.log('[+] Chattr listening on port 3000...')
+var port = process.env.PORT || 3000
+var server = app.listen(port, function() {
+	console.log('Server', process.pid, 'listening on', port)
 })
-require('./websockets').connect(server)
+websockets.connect(server)
 
